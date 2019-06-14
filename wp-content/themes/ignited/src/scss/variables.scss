@@ -1,0 +1,82 @@
+@import 'defaults';
+
+$primary: #00ab68;
+$secondary: #018770;
+$body-color: $gray-700;
+$link-color: $gray-700;
+$link-hover-color: black;
+
+$font-family-sans-serif: 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
+$font-weight-base: 300;
+$headings-margin-bottom: 1.5rem;
+
+$navbar-logo-height: 60px;
+$navbar-light-active-color: $primary;
+$nav-link-padding-x: 2rem;
+
+$modal-content-border-width: 0;
+
+$hero-height: 80vh;
+$navbar-height: 86px;
+$wp-admin-bar-sm: 32px;
+$wp-admin-bar-lg: 46px;
+
+.btn {
+	display: flex;
+	align-items: center;
+}
+
+.btn-gradient-primary {
+  background: $primary;
+	background: linear-gradient(270deg, $primary 10%, $secondary 90%);
+	padding: 1rem 2.5rem !important;
+	color: white !important;
+}
+
+.mb-max {
+	margin-bottom: 4rem;
+}
+
+ul {
+	list-style: square;
+	margin-inline-start: 1rem;
+}
+
+ol {
+	list-style: decimal;
+	margin-inline-start: 1rem;
+}
+
+blockquote {
+	background: $gray-100;
+	padding: 1rem 2rem 1rem 2rem;
+	font-size: 1.2rem;
+	font-style: italic;
+	-webkit-box-shadow: 5px 5px 0px 0px rgba($primary,1);
+	-moz-box-shadow: 5px 5px 0px 0px rgba($primary,1);
+	box-shadow: 5px 5px 0px 0px rgba($primary,1);
+}
+
+img {
+	&.alignleft {
+		float: left;
+		margin: 1rem 2rem 1rem 0;
+	}
+	&.alignright {
+		float: right;
+		margin: 1rem 0 1rem 2rem;
+	}
+	&.alignnone,
+	&.aligncenter {
+		margin: 1rem 0;
+	}
+	&.alignnone,
+	&.aligncenter,
+	&.alignleft,
+	&.alignright {
+		@extend .img-fluid;
+		-webkit-box-shadow: 5px 5px 0px 0px rgba($primary,1);
+		-moz-box-shadow: 5px 5px 0px 0px rgba($primary,1);
+		box-shadow: 5px 5px 0px 0px rgba($primary,1);
+	}
+}

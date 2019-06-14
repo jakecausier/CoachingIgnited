@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "dev": "npm run development",
+    "development": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "cloud9carousel": "^2.2.0",
+    "fontawesome": "^4.7.2",
+    "intersection-observer": "^0.7.0",
+    "intersection-observer-polyfill": "^0.1.0",
+    "jquery": "^3.4.1",
+    "laravel-mix": "^4.0.16",
+    "popper.js": "^1.14.4",
+    "vanilla-lazyload": "^12.0.0"
+  },
+  "devDependencies": {
+    "sass": "^1.21.0",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
