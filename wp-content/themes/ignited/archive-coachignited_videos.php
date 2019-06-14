@@ -25,6 +25,12 @@
 					<span class="location"><?php echo $location ?></span>
 				</div>
 			<?php endwhile; endif; ?>
+
+			<div class="col-12">
+				<nav id="pagination" aria-label="Page Navigation">
+					<?php echo paginate_links(array('prev_text' => "<i class='fas fa-chevron-left fa-fw'></i>", 'next_text' => "<i class='fas fa-chevron-right fa-fw'></i>", 'type' => 'list')); ?>
+				</nav>
+			</div>
 		</div>
 	</div>
 </section>

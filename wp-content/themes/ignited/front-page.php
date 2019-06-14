@@ -10,11 +10,9 @@
 	<section id="hero" style="background-image: url('<?php echo ($hero_background) ? wp_get_attachment_image_src($hero_background, 'large')[0] : ''; ?>">
 		<header class="content container" style="color: <?php echo $hero_colour ?>">
 
-			<h1 class="title">You’re just a few strategies away from generating more Personal Training clients than ever before</h1>
-
+			<h1 class="title"><?php echo get_post_meta(get_the_ID(), 'cignited_front_hero_title', true) ?></h1>
 			<hr class="seperator-short seperator-left" style="border-color: <?php echo $hero_colour ?>">
-
-			<h2 class="subtitle">Any personal trainer can do it with a very specific set of steps. Let us show you how to generate fresh leads, convert them into paying customers and optimise your whole fitness business.</h2>
+			<h2 class="subtitle"><?php echo get_post_meta(get_the_ID(), 'cignited_front_hero_subtitle', true) ?></h2>
 
 			<?php if(!empty($hero_link)) { ?>
 				<a href="<?php echo $hero_link ?>" class="btn btn-gradient-primary btn-lg">Start Here <i class="ml-2 fas fa-chevron-circle-right"></i></a>
@@ -23,17 +21,19 @@
 		</header>
 	</section>
 
-	<section id="spinner">
-		<div class="container">
-			<figure id="spinner-element">
-				<?php foreach (get_post_meta(get_the_ID(), 'cignited_front_spinner_logos', true) as $key => $item) { ?>
-					<a class="cloud9-item" href="">
-						<img src="<?php echo wp_get_attachment_image_src($key, 'medium')[0] ?>">
-					</a>
-				<?php } ?>
-			</figure>
-		</div>
-	</section>
+	<?php if (!empty(get_post_meta(get_the_ID(), 'cignited_front_spinner_logos', true))) { ?>
+		<section id="spinner">
+			<div class="container">
+				<figure id="spinner-element">
+					<?php foreach (get_post_meta(get_the_ID(), 'cignited_front_spinner_logos', true) as $key => $item) { ?>
+						<a class="cloud9-item" href="">
+							<img src="<?php echo wp_get_attachment_image_src($key, 'medium')[0] ?>">
+						</a>
+					<?php } ?>
+				</figure>
+			</div>
+		</section>
+	<?php } ?>
 
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
@@ -53,7 +53,7 @@
 
 	<?php 
 		if ( class_exists( 'CoachingIgnited' ) ) {
-			$videos = CoachingIgnited::get_videos();
+			$videos = CoachingIgnited::get_videos(8);
 			if (!empty($videos)) {
 	?>
 				<section id="videos">
@@ -62,7 +62,7 @@
 							<hr />
 						</div>
 
-						<div class="videos-padding row">
+						<div class="videos-padding row mb-max">
 							<?php
 								foreach ($videos as $key => $video) {
 									$video_id = get_post_meta($video->ID, 'cignited_videos_videometa_embed_url', true) ?? '';

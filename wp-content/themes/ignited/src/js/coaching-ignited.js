@@ -37,16 +37,29 @@ $(function(){
 
 				var title = post.post_title;
 				var description = post.post_content;
-				var trainer = meta.cignited_videos_trainer_name[0];
-				var location = meta.cignited_videos_trainer_location[0];
-		  	var embed = 'https://www.youtube.com/embed/' + meta.cignited_videos_videometa_embed_url[0] + '?controls=0';
+				var trainer = '';
+				var location = '';
+				var embed = null;
 
-		  	$('#video-modal #video-title').text(title);
-		  	$('#video-modal #video-subtitle').text(trainer + ' from ' + location);
-		  	$('#video-modal #video-embed').attr('src', embed);
-		  	$('#video-modal #video-description').html(description);
+				if (meta.cignited_videos_trainer_name[0]) {
+					trainer = meta.cignited_videos_trainer_name[0];
+				}
+				if (meta.cignited_videos_trainer_location[0]) {
+					location = meta.cignited_videos_trainer_location[0];
+				}
+				if (meta.cignited_videos_videometa_embed_url[0]) {
+		  		embed = 'https://www.youtube.com/embed/' + meta.cignited_videos_videometa_embed_url[0] + '?controls=0';
+		  	}
 
-    		$('#video-modal').modal('show');
+		  	if (embed !== null) {
+			  	$('#video-modal #video-title').text(title);
+			  	$('#video-modal #video-subtitle').text(trainer + ' from ' + location);
+			  	$('#video-modal #video-embed').attr('src', embed);
+			  	$('#video-modal #video-description').html(description);
+	    		$('#video-modal').modal('show');
+	    	} else {
+	    		console.log('No embed code on this video, cannot open.')
+	    	}
 
 			} else {
 				error_messages = response.data;
