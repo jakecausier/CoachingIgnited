@@ -195,19 +195,59 @@ if ( !class_exists( 'CoachingIgnitedSetup' ) ) {
 					)
 		    ));
 
+		  $section = 'videos_';
+		  $cmb = new_cmb2_box(array(
+		    'id' 							=> $prefix . $section . 'metaboxes',
+		    'title' 					=> __('Videos Content', 'coachignited'),
+		    'object_types' 		=> array('page'),
+		    'show_on' 				=> array('id' => get_option('page_on_front')),
+		    'context' 				=> 'normal',
+		    'priority' 				=> 'high',
+		    'show_names' 			=> true,
+		    'closed' 					=> false,
+		  ));
+
+			  $cmb->add_field(array(
+					'name'    				=> __('Content - Before', 'coachignited'),
+					'desc'    				=> __('The text content to appear before the videos row.', 'coachignited'),
+					'id' 							=> $prefix . $section . 'content_before',
+					'type'    				=> 'wysiwyg',
+					'options' 				=> array(),
+				));
+
+				$cmb->add_field(array(
+					'name'    				=> __('Content - After', 'coachignited'),
+					'desc'    				=> __('The text content to appear after the videos row.', 'coachignited'),
+					'id' 							=> $prefix . $section . 'content_after',
+					'type'    				=> 'wysiwyg',
+					'options' 				=> array(),
+				));
+
+  	}
+
+
+  	public function define_about_page_metaboxes() {
+
+  		$prefix = 'cignited_about_';
+
 		  $section = 'spinner_';
 		  $cmb = new_cmb2_box(array(
 		    'id' 							=> $prefix . $section . 'metaboxes',
 		    'title' 					=> __('Logo Spinner', 'coachignited'),
 		    'object_types' 		=> array('page'),
-		    'show_on' 				=> array('id' => get_option('page_on_front')),
+		    'show_on' => array(
+	        'key' => 'page-template',
+	        'value' => array(
+	          'page-templates/template-about.php',
+	        )
+	      ),
 		    'context' 				=> 'after_title',
 		    'priority' 				=> 'high',
 		    'show_names' 			=> true,
 		    'closed' 					=> false,
 		  ));
 
-		  	$cmb->add_field( array(
+		 	 	$cmb->add_field( array(
 					'name' => 'Logos',
 					'desc' => 'Choose which logos to display and the order of appearance.',
 					'id'   => $prefix . $section . 'logos',
@@ -215,7 +255,7 @@ if ( !class_exists( 'CoachingIgnitedSetup' ) ) {
 					'query_args' => array( 'type' => 'image' ),
 				));
 
-  	}
+		}
 
 
   	public function define_blog_page_metaboxes() {
@@ -376,6 +416,7 @@ $CoachingIgnited = new CoachingIgnited();
 
 add_action('init', array($CoachingIgnitedSetup, 'define_post_type_videos'));
 add_action('cmb2_admin_init', array($CoachingIgnitedSetup, 'define_front_page_metaboxes'));
+add_action('cmb2_admin_init', array($CoachingIgnitedSetup, 'define_about_page_metaboxes'));
 add_action('cmb2_admin_init', array($CoachingIgnitedSetup, 'define_blog_page_metaboxes'));
 add_action('cmb2_admin_init', array($CoachingIgnitedSetup, 'define_post_type_videos_metaboxes'));
 add_action('cmb2_admin_init', array($CoachingIgnitedSetup, 'define_post_podcast_metaboxes'));
