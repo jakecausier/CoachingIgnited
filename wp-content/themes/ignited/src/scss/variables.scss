@@ -6,7 +6,7 @@ $body-color: $gray-700;
 $link-color: $gray-700;
 $link-hover-color: black;
 
-$font-family-sans-serif: 'Montserrat', 'Segoe UI', 'Arial', sans-serif;
+$font-family-sans-serif: 'Raleway', 'Segoe UI', 'Arial', sans-serif;
 $font-weight-base: 300;
 $headings-margin-bottom: 1.5rem;
 
@@ -31,6 +31,13 @@ $wp-admin-bar-lg: 46px;
 	background: linear-gradient(270deg, $primary 10%, $secondary 90%);
 	padding: 1rem 2.5rem !important;
 	color: white !important;
+}
+
+.btn-xl {
+	font-size: 2rem !important;
+	padding: 1rem 2.5rem !important;
+	line-height: 1.6 !important;
+	border-radius: .5rem !important;
 }
 
 .mb-max {
@@ -78,5 +85,32 @@ img {
 		-webkit-box-shadow: 5px 5px 0px 0px rgba($primary,1);
 		-moz-box-shadow: 5px 5px 0px 0px rgba($primary,1);
 		box-shadow: 5px 5px 0px 0px rgba($primary,1);
+	}
+}
+
+%rating-stars {
+	.rating {
+		position: relative;
+		height: 1.4rem;
+		
+		i {
+			color: gold;
+		}
+		span.top {
+			position: absolute;
+			top: 0; left: 0;
+			z-index: 2;
+		}
+		span.bottom {
+			position: absolute;
+			top: 0; left: 0;
+			color: black;
+			opacity: 0.1;
+			z-index: 1;
+
+			i {
+				text-shadow: 0px 2px 40px rgba(0,0,0,0.8);
+			}
+		}
 	}
 }

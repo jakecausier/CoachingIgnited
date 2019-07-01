@@ -34,11 +34,12 @@ if ( !class_exists( 'CoachingIgnited' ) ) {
 			return $posts;
   	}
 
-  	public static function get_videos($amount = 8) {
+  	public static function get_videos($amount = 8, $sort = 'date') {
   		$args = array(
   			'post_type' => 'coachignited_videos',
   			'post_status' => 'publish',
-  			'posts_per_page' => $amount
+  			'posts_per_page' => $amount,
+  			'orderby' => $sort
   		);
   		$posts = get_posts($args);
 			return $posts;
@@ -382,6 +383,22 @@ if ( !class_exists( 'CoachingIgnitedSetup' ) ) {
 		      'attributes'		=> array(
 		      	'placeholder' 	=> 'Stockport, Manchester'
 		      )
+		    ));
+
+		    $cmb->add_field(array(
+		      'name' 					=> __('Rating', 'coachignited'),
+		      'desc' 					=> __('The 5-star rating of this trainer.', 'coachignited'),
+		      'id' 						=> $prefix . $section . 'rating',
+		      'type'    			=> 'radio_inline',
+					'options' 			=> array(
+						'5' 						=> __('5 Stars', 'coachignited'),
+						'4'   					=> __('4 Stars', 'coachignited'),
+						'3'     				=> __('3 Stars', 'coachignited'),
+						'2'     				=> __('2 Stars', 'coachignited'),
+						'1'     				=> __('1 Star', 'coachignited'),
+						'0'     				=> __('No Stars', 'coachignited'),
+					),
+					'default' => '5',
 		    ));
 
 		  $section = 'videometa_';

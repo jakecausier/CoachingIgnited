@@ -13,4 +13,5 @@ let mix = require('laravel-mix');
 
 mix.js('src/js/coaching-ignited.js', 'build/js/');
 mix.sass('src/scss/coaching-ignited.scss', 'build/css').options({ processCssUrls: false });
-mix.copy('src/fontawesome/webfonts/', 'build/webfonts/');
+mix.copy('src/fontawesome/webfonts/', 'build/webfonts/'),
+mix.copy('src/img/', 'build/img/');

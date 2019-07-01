@@ -5,7 +5,7 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
 // Google Fonts
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,700&display=swap');
 
 // FontAwesome
 @import '../fontawesome/scss/fontawesome';
@@ -203,14 +203,13 @@ section#videos {
 		padding: 0 4rem;
 	}
 	.video-item {
-		// transform: scale(0.8);
-		// transition: all 250ms ease;
+		background: white;
+		transition: all 250ms ease;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
 
-		// &:hover, &:focus {
-		// 	transform: scale(1);
-		// 	transition: all 250ms ease;
-		// }
-		i {
+		button i {
 			position: absolute;
 			z-index: 5;
 			top: calc(50% - 1.5rem);
@@ -218,17 +217,21 @@ section#videos {
 			color: white;
 			font-size: 3rem;
 		}
-		.name {
-			display: block;
-			font-weight: 700;
-		}
-		.location {
-			display: block;
+		.meta {
+			padding: 1rem 1rem 1.5rem 1rem;
+
+			.name {
+				display: block;
+				font-weight: 700;
+			}
+			.location {
+				display: block;
+				opacity: 0.5;
+			}
+			@extend %rating-stars;
 		}
 		.thumbnail {
-			-webkit-box-shadow: 0px 10px 15px 5px rgba(0,0,0,0.1);
-			-moz-box-shadow: 0px 12px 15px 5px rgba(0,0,0,0.1);
-			box-shadow: 0px 10px 15px 5px rgba(0,0,0,0.1);
+			border: 0;
 
 			&::after {
 				content: '';
@@ -239,11 +242,16 @@ section#videos {
 				opacity: 0;
 				transition: all 250ms ease;
 			}
-			&:hover, &:focus {
-				&::after {
-					opacity: 0.8;
-					transition: all 250ms ease;
-				}
+		}
+		&:hover, &:focus {
+			-webkit-box-shadow: 0px 10px 15px 5px rgba(0,0,0,0.2);
+			-moz-box-shadow: 0px 12px 15px 5px rgba(0,0,0,0.2);
+			box-shadow: 0px 10px 15px 5px rgba(0,0,0,0.2);
+			transition: all 250ms ease;
+
+			.thumbnail::after {
+				opacity: 0.8;
+				transition: all 250ms ease;
 			}
 		}
 	}
@@ -298,13 +306,19 @@ div#video-modal {
 		padding: 1rem;
 		margin-bottom: 4rem;
 
-		h1#video-title {
+		.meta {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding-bottom: 1rem;
+		}
+		.btn {
+			margin-top: 1rem;
+		}
+		#video-title {
 			font-size: 2rem;
 		}
-		h2#video-subtitle {
-			font-size: 1.2rem;
-		}
-		blockquote#video-description {
+		#video-description {
 			font-style: italic;
 			font-size: 1.2rem;
 		}
@@ -319,5 +333,6 @@ div#video-modal {
 				color: $black;
 			}
 		}
+		@extend %rating-stars;
 	}
 }
