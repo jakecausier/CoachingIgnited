@@ -74,11 +74,7 @@ if ( !class_exists( 'CoachingIgnited' ) ) {
 		}
 
   	public static function get_youtube_thumb($id) {
-			if ( CoachingIgnited::url_exists( 'https://i.ytimg.com/vi_webp/' .$id . '/maxresdefault.webp' ) ) {
-				$image = 'https://i.ytimg.com/vi_webp/' .$id . '/maxresdefault.webp';
-			} elseif ( CoachingIgnited::url_exists( 'https://i.ytimg.com/vi_webp/' .$id . '/mqdefault.webp' ) ) {
-				$image = 'https://i.ytimg.com/vi_webp/' .$id . '/mqdefault.webp';
-			} elseif ( CoachingIgnited::url_exists( 'https://i.ytimg.com/vi/' .$id . '/maxresdefault.jpg' ) ) {
+			if ( CoachingIgnited::url_exists( 'https://i.ytimg.com/vi/' .$id . '/maxresdefault.jpg' ) ) {
 				$image = 'https://i.ytimg.com/vi/' .$id . '/maxresdefault.jpg';
 			} elseif ( CoachingIgnited::url_exists( 'https://i.ytimg.com/vi/' .$id . '/mqdefault.jpg' ) ) {
 				$image = 'https://i.ytimg.com/vi/' .$id . '/mqdefault.jpg';
