@@ -34,7 +34,7 @@
 				</div>
 
 				<div class="col-12 col-md-5 offset-md-1 order-first order-md-last">
-					<img src="<?php echo get_template_directory_uri() . '/build/img/undraw_teaching.svg'; ?>" class="img-fluid mb-max" alt="Illustration of a video influencer">
+					<img src="<?php echo get_template_directory_uri() . '/build/img/undraw_teaching.svg'; ?>" class="img-fluid mb-max" alt="Illustration of a teacher">
 				</div>
 
 			</div>
