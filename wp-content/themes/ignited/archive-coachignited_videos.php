@@ -1,7 +1,5 @@
 <?php get_header() ?>
 
-
-
 <section id="videos" class="page">
 	<div class="content container">
 		<div class="row">

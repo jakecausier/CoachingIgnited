@@ -5,7 +5,7 @@
 	Description: Defines the underlying post types for the Coaching Ignited website.
 	Author: Jake Causier
 	Author URI: https://github.com/jakecausier
-	Version: 0.0.1
+	Version: 1.0.0
 */
 
 
@@ -13,9 +13,10 @@ if (!defined('WPINC')) {
 	die;
 }
 
+define('PLUGIN_PATH', plugin_dir_path(__FILE__)); 
 
-if ( file_exists( WPMU_PLUGIN_DIR . '/cmb2/init.php' ) ) {
-	require_once WPMU_PLUGIN_DIR . '/cmb2/init.php';
+if (file_exists(PLUGIN_PATH . '/includes/cmb2/init.php')) {
+	require_once PLUGIN_PATH . '/includes/cmb2/init.php';
 }
 
 
