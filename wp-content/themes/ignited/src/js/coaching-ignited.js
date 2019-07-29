@@ -17,6 +17,7 @@ $(function(){
 	  autoPlay: 1,
 	  farScale: 0.6,
 	  bringToFront: true,
+		frontItemClass: 'front-item'
 	});
 });
 

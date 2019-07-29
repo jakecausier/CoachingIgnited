@@ -22,7 +22,13 @@
 			    	<p id="video-trainer-location"></p>
 			    	<p id="video-trainer-position"></p>
 
-			    	<a href="<?php echo get_post_meta(get_option('page_on_front'), 'cignited_front_hero_btn_link', true) ?? '' ?>" class="btn btn-gradient-primary btn-lg">Book a call <i class="ml-2 fas fa-chevron-circle-right"></i></a>
+			    	<?php
+			    		$hero_link = get_post_meta(get_option('page_on_front'), 'cignited_front_hero_btn_link', true) ?? '';
+			    		$hero_label = get_post_meta(get_option('page_on_front'), 'cignited_front_hero_btn_label', true) ?? '';
+			    	?>
+			    	<?php if (!empty($hero_link)) { ?>
+			    		<a href="<?php echo $hero_link ?>" class="btn btn-gradient-primary btn-lg"><?php echo $hero_label ?> <i class="ml-2 fas fa-chevron-circle-right"></i></a>
+			    	<?php } ?>
 		    	</div>
 		    	<div class="col-12">
 		    		<blockquote id="video-description"></blockquote>

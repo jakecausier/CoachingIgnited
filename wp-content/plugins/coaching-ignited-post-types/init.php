@@ -5,7 +5,7 @@
 	Description: Defines the underlying post types for the Coaching Ignited website.
 	Author: Jake Causier
 	Author URI: https://github.com/jakecausier
-	Version: 1.0.0
+	Version: 1.0.1
 */
 
 
@@ -17,6 +17,7 @@ define('PLUGIN_PATH', plugin_dir_path(__FILE__));
 
 if (file_exists(PLUGIN_PATH . '/includes/cmb2/init.php')) {
 	require_once PLUGIN_PATH . '/includes/cmb2/init.php';
+	require_once PLUGIN_PATH . '/includes/cmb2/plugins/cmb2-field-post-search-ajax.php';
 }
 
 
@@ -183,6 +184,13 @@ if ( !class_exists( 'CoachingIgnitedSetup' ) ) {
 		    ));
 
 		    $cmb->add_field(array(
+		      'name' 					=> __('Button Label', 'coachignited'),
+		      'desc' 					=> __('The label for the button.', 'coachignited'),
+		      'id' 						=> $prefix . $section . 'btn_label',
+		      'type' 					=> 'text',
+		    ));
+
+		    $cmb->add_field(array(
 		      'name' 					=> __('Button URL', 'coachignited'),
 		      'desc' 					=> __('Leave blank to hide the button.', 'coachignited'),
 		      'id' 						=> $prefix . $section . 'btn_link',
@@ -204,6 +212,27 @@ if ( !class_exists( 'CoachingIgnitedSetup' ) ) {
 		    'show_names' 			=> true,
 		    'closed' 					=> false,
 		  ));
+
+		  	$cmb->add_field(array(
+					'name'    				=> __('Selected Videos', 'coachignited'),
+					'desc'    				=> __('Choose which videos to show on the front page. If left blank, the videos will be randomized.', 'coachignited'),
+					'id' 							=> $prefix . $section . 'order',
+					'type'      	=> 'post_search_ajax',
+					'limit'      	=> 3,
+					'sortable' 	 	=> true,
+					'query_args'	=> array(
+						'post_type'			=> array('coachignited_videos'),
+						'post_status'		=> array('publish'),
+						'posts_per_page'	=> -1
+					)
+				));
+
+				$cmb->add_field(array(
+		      'name' 					=> __('Content - Title', 'coachignited'),
+		      'desc' 					=> __('The title for this section.', 'coachignited'),
+		      'id' 						=> $prefix . $section . 'content_title',
+		      'type' 					=> 'text',
+		    ));
 
 			  $cmb->add_field(array(
 					'name'    				=> __('Content - Before', 'coachignited'),

@@ -5,6 +5,7 @@
 		$hero_background = get_post_meta(get_the_ID(), 'cignited_front_hero_background_id', true) ?? '';
 		$hero_colour = get_post_meta(get_the_ID(), 'cignited_front_hero_colour', true) ?? 'black';
 		$hero_link = get_post_meta(get_the_ID(), 'cignited_front_hero_btn_link', true) ?? '';
+		$hero_label = get_post_meta(get_the_ID(), 'cignited_front_hero_btn_label', true) ?? '';
 	?>
 
 	<section id="hero" style="background-image: url('<?php echo ($hero_background) ? wp_get_attachment_image_src($hero_background, 'large')[0] : ''; ?>">
@@ -15,7 +16,7 @@
 			<h2 class="subtitle"><?php echo get_post_meta(get_the_ID(), 'cignited_front_hero_subtitle', true) ?></h2>
 
 			<?php if(!empty($hero_link)) { ?>
-				<a href="<?php echo $hero_link ?>" class="btn btn-gradient-primary btn-lg">Book a call <i class="ml-2 fas fa-chevron-circle-right"></i></a>
+				<a href="<?php echo $hero_link ?>" class="btn btn-gradient-primary btn-lg"><?php echo $hero_label ?> <i class="ml-2 fas fa-chevron-circle-right"></i></a>
 			<?php } ?>
 
 		</header>
@@ -27,24 +28,22 @@
 		<div class="content container">
 			<div class="row mt-5">
 
-				<div class="col-12 col-md-6 order-last order-md-first">
-					<div class="mb-max">
+				<div class="col-12 col-lg-6 mb-5 mb-lg-0 content-container-left">
+					<div class="font-larger font-flex-bottom">
 						<?php the_content() ?>
 					</div>
 				</div>
 
-				<div class="col-12 col-md-5 offset-md-1 order-first order-md-last">
-					<img src="<?php echo get_template_directory_uri() . '/build/img/undraw_teaching.svg'; ?>" class="img-fluid mb-max" alt="Illustration of a teacher">
-				</div>
+				<div class="col-12 col-lg-5 offset-lg-1 content-container-right">
+					<img src="<?php echo get_template_directory_uri() . '/build/img/undraw_teaching.svg'; ?>" class="img-fluid mb-4" alt="Illustration of a teacher">
 
+					<?php if(!empty($hero_link)) { ?>
+						<div class="text-center">
+							<a href="<?php echo $hero_link ?>" class="btn btn-gradient-primary btn-lg btn-block"><?php echo $hero_label ?> <i class="ml-2 fas fa-chevron-circle-right"></i></a>
+						</div>
+					<?php } ?>
+				</div>
 			</div>
-
-			<?php if(!empty($hero_link)) { ?>
-				<div class="text-center">
-					<a href="<?php echo $hero_link ?>" class="btn btn-gradient-primary btn-lg">Book a call <i class="ml-2 fas fa-chevron-circle-right"></i></a>
-				</div>
-			<?php } ?>
-
 		</div>
 	</section>
 
@@ -52,32 +51,41 @@
 
 	<?php 
 		if ( class_exists( 'CoachingIgnited' ) ) {
-			$videos = CoachingIgnited::get_videos(3, 'rand');
+
+			$videos_order = get_post_meta(get_the_ID(), 'cignited_front_videos_order', true);
+
+			if (!empty($videos_order)) {
+				$videos = $videos_order;
+			} else {
+				$videos = CoachingIgnited::get_videos(3, 'rand');
+			}
+
 			if (!empty($videos)) {
 	?>
 				<section id="videos">
 					<div class="content">
-						<div class="container mb-max">
+						<div class="container mb-4">
 							<hr />
 
-							<div class="content-padded">
-								<?php echo wpautop(get_post_meta(get_the_ID(), 'cignited_front_videos_content_before', true)) ?>
+							<div class="text-center">
+								<h3><?php echo get_post_meta(get_the_ID(), 'cignited_front_videos_content_title', true); ?></h3>
 							</div>
+							<?php echo wpautop(get_post_meta(get_the_ID(), 'cignited_front_videos_content_before', true)) ?>
 						</div>
 
-						<div class="container mb-max">
+						<div class="container">
 							<div class="row">
 								<?php
 									foreach ($videos as $key => $video) {
-										$video_id = get_post_meta($video->ID, 'cignited_videos_videometa_embed_url', true) ?? '';
-										$trainer = get_post_meta($video->ID, 'cignited_videos_trainer_name', true) ?? '';
-										$position = get_post_meta($video->ID, 'cignited_videos_trainer_position', true) ?? '';
-										$location = get_post_meta($video->ID, 'cignited_videos_trainer_location', true) ?? '';
-										$rating = get_post_meta($video->ID, 'cignited_videos_trainer_rating', true) ?? NULL;
+										$video_id = get_post_meta($video->ID ?? $video, 'cignited_videos_videometa_embed_url', true) ?? '';
+										$trainer = get_post_meta($video->ID ?? $video, 'cignited_videos_trainer_name', true) ?? '';
+										$position = get_post_meta($video->ID ?? $video, 'cignited_videos_trainer_position', true) ?? '';
+										$location = get_post_meta($video->ID ?? $video, 'cignited_videos_trainer_location', true) ?? '';
+										$rating = get_post_meta($video->ID ?? $video, 'cignited_videos_trainer_rating', true) ?? NULL;
 								?>
 									<div class="col-12 col-md-4 mb-4">
 										<div class="video-item">
-											<button role="button" class="thumbnail embed-responsive embed-responsive-16by9" data-id="<?php echo $video->ID ?>" title="View <?php echo $trainer ?>'s video" aria-label="View <?php echo $trainer ?>'s video">
+											<button role="button" class="thumbnail embed-responsive embed-responsive-16by9" data-id="<?php echo $video->ID ?? $video ?>" title="View <?php echo $trainer ?>'s video" aria-label="View <?php echo $trainer ?>'s video">
 												<i class="fas fa-play-circle"></i>
 												<img class="embed-responsive-item" src="<?php echo CoachingIgnited::get_youtube_thumb($video_id) ?>">
 											</button>
@@ -123,7 +131,7 @@
 							<div class="container mb-max">
 								<hr />
 								<div class="text-center">
-									<a href="<?php echo $hero_link ?>" class="btn btn-gradient-primary btn-xl">Book a call <i class="ml-2 fas fa-chevron-circle-right"></i></a>
+									<a href="<?php echo $hero_link ?>" class="btn btn-gradient-primary btn-xl"><?php echo $hero_label ?> <i class="ml-2 fas fa-chevron-circle-right"></i></a>
 								</div>
 							</div>
 						<?php } ?>

@@ -38,7 +38,7 @@
 			<figure id="spinner-element">
 				<?php foreach (get_post_meta(get_the_ID(), 'cignited_about_spinner_logos', true) as $key => $item) { ?>
 					<a class="cloud9-item" href="">
-						<img src="<?php echo wp_get_attachment_image_src($key, 'medium')[0] ?>">
+						<img src="<?php echo wp_get_attachment_image_src($key, 'large')[0] ?>">
 					</a>
 				<?php } ?>
 			</figure>
