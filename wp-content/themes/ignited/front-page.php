@@ -130,9 +130,20 @@
 						<?php if(!empty($hero_link)) { ?>
 							<div class="container mb-max">
 								<hr />
-								<div class="text-center">
-									<a href="<?php echo $hero_link ?>" class="btn btn-gradient-primary btn-xl"><?php echo $hero_label ?> <i class="ml-2 fas fa-chevron-circle-right"></i></a>
+
+								<div class="row">
+									<div class="col-12 col-lg-5">
+										<img src="<?php echo get_template_directory_uri() . '/build/img/undraw_progress.svg'; ?>" class="img-fluid mb-4" alt="Illustration of progression">
+
+									</div>
+
+									<div class="col-12 col-lg-6 offset-lg-1">
+										<div class="font-flex-middle">
+											<a href="<?php echo $hero_link ?>" class="btn btn-gradient-primary btn-lg btn-block"><?php echo $hero_label ?> <i class="ml-2 fas fa-chevron-circle-right"></i></a>
+										</div>
+									</div>
 								</div>
+
 							</div>
 						<?php } ?>
 					</div>

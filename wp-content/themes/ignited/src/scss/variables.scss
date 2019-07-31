@@ -48,50 +48,6 @@ $wp-admin-bar-lg: 46px;
 	margin-bottom: 4rem;
 }
 
-ul {
-	list-style: square;
-	margin-inline-start: 1rem;
-}
-
-ol {
-	list-style: decimal;
-	margin-inline-start: 1rem;
-}
-
-blockquote {
-	background: $gray-100;
-	padding: 1rem 2rem 1rem 2rem;
-	font-size: 1.2rem;
-	font-style: italic;
-	-webkit-box-shadow: 5px 5px 0px 0px rgba($primary,1);
-	-moz-box-shadow: 5px 5px 0px 0px rgba($primary,1);
-	box-shadow: 5px 5px 0px 0px rgba($primary,1);
-}
-
-img {
-	&.alignleft {
-		float: left;
-		margin: 1rem 2rem 1rem 0;
-	}
-	&.alignright {
-		float: right;
-		margin: 1rem 0 1rem 2rem;
-	}
-	&.alignnone,
-	&.aligncenter {
-		margin: 1rem 0;
-	}
-	&.alignnone,
-	&.aligncenter,
-	&.alignleft,
-	&.alignright {
-		@extend .img-fluid;
-		-webkit-box-shadow: 5px 5px 0px 0px rgba($primary,1);
-		-moz-box-shadow: 5px 5px 0px 0px rgba($primary,1);
-		box-shadow: 5px 5px 0px 0px rgba($primary,1);
-	}
-}
-
 %rating-stars {
 	.rating {
 		position: relative;
