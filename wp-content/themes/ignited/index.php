@@ -17,7 +17,7 @@
 				<hr/>
 			</div>
 
-			<div class="col-12 masonry two-columns">
+			<div class="col-12 offset-md-3 col-md-6">
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 					<?php get_template_part( 'entry' ); ?>
 				<?php endwhile; endif; ?>

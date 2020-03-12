@@ -285,6 +285,69 @@ if ( !class_exists( 'CoachingIgnitedSetup' ) ) {
 		}
 
 
+		public function define_contact_page_metaboxes() {
+
+  		$prefix = 'cignited_contact_';
+
+		  $section = 'info_';
+		  $cmb = new_cmb2_box(array(
+		    'id' 							=> $prefix . $section . 'metaboxes',
+		    'title' 					=> __('Contact Information', 'coachignited'),
+		    'object_types' 		=> array('page'),
+		    'show_on' => array(
+	        'key' => 'page-template',
+	        'value' => array(
+	          'page-templates/template-contact.php',
+	        )
+	      ),
+		    'context' 				=> 'after_title',
+		    'priority' 				=> 'high',
+		    'show_names' 			=> true,
+		    'closed' 					=> false,
+		  ));
+
+		 	 	$cmb->add_field( array(
+					'name' 						=> 'E-mail Address',
+					'desc' 						=> 'Choose the e-mail address you want to display. Leaving this blank defaults to the admin e-mail address.',
+					'id'   						=> $prefix . $section . 'email',
+					'type' 						=> 'text',
+					'attributes'			=> array(
+						'type'						=> 'email',
+						'required'				=> true,
+					),
+				));
+
+				$cmb->add_field( array(
+					'name' 						=> 'E-mail Subject',
+					'desc' 						=> 'Set a subject that will be placed into the e-mail when a person clicks the e-mail address.',
+					'id'   						=> $prefix . $section . 'email_subject',
+					'type' 						=> 'text',
+				));
+
+				$cmb->add_field( array(
+					'name' 						=> 'Phone Number',
+					'desc' 						=> 'Enter a phone number for people to contact you on.',
+					'id'   						=> $prefix . $section . 'phone',
+					'type' 						=> 'text',
+				));
+
+				$cmb->add_field( array(
+					'name' 						=> 'Address',
+					'desc' 						=> 'Enter an address people can find you at.',
+					'id'   						=> $prefix . $section . 'address',
+					'type' 						=> 'textarea_small',
+				));
+
+				$cmb->add_field( array(
+					'name' 						=> 'Map Coordinates',
+					'desc' 						=> 'Enter a set of coordinates to be used by the Google Map embed to display a map.',
+					'id'   						=> $prefix . $section . 'location',
+					'type' 						=> 'text',
+				));
+
+		}
+
+
   	public function define_blog_page_metaboxes() {
   		
   		$prefix = 'cignited_blog_';
@@ -460,6 +523,7 @@ $CoachingIgnited = new CoachingIgnited();
 add_action('init', array($CoachingIgnitedSetup, 'define_post_type_videos'));
 add_action('cmb2_admin_init', array($CoachingIgnitedSetup, 'define_front_page_metaboxes'));
 add_action('cmb2_admin_init', array($CoachingIgnitedSetup, 'define_about_page_metaboxes'));
+add_action('cmb2_admin_init', array($CoachingIgnitedSetup, 'define_contact_page_metaboxes'));
 add_action('cmb2_admin_init', array($CoachingIgnitedSetup, 'define_blog_page_metaboxes'));
 add_action('cmb2_admin_init', array($CoachingIgnitedSetup, 'define_post_type_videos_metaboxes'));
 add_action('cmb2_admin_init', array($CoachingIgnitedSetup, 'define_post_podcast_metaboxes'));
