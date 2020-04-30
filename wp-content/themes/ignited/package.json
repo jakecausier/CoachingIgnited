@@ -13,7 +13,7 @@
     "fontawesome": "^4.7.2",
     "intersection-observer": "^0.7.0",
     "intersection-observer-polyfill": "^0.1.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "laravel-mix": "^4.0.16",
     "popper.js": "^1.14.4",
     "vanilla-lazyload": "^12.0.0"
